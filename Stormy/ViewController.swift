@@ -50,6 +50,13 @@ class ViewController: UIViewController {
                 let viewModel = CurrentWeatherViewModel(model: currentWeather)
                 self.displayWeather(using: viewModel)
                 self.toggleRefreshAnimation(on: false)
+            } else if error != nil {
+                let alertController = UIAlertController(title: "Error Found", message: error?.getErrorDetail(), preferredStyle: .alert)
+                
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(action)
+                
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
